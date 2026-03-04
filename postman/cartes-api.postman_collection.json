@@ -1,0 +1,364 @@
+{
+  "info": {
+    "_postman_id": "c67eb8f6-7f3f-4a72-96bc-1f7dc2f52f58",
+    "name": "Ndolo Cartes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Collection Postman pour tester les endpoints de creation, consultation, modification et statistiques des cartes."
+  },
+  "item": [
+    {
+      "name": "Auth - Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"matricule\": \"MAT-ADMIN-001\",\n  \"password\": \"Pass1234!\",\n  \"nom\": \"KABILA\",\n  \"post_nom\": \"MULUMBA\",\n  \"prenom\": \"Isaac\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/auth/register/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "auth",
+            "register",
+            ""
+          ]
+        }
+      }
+    },
+    {
+      "name": "Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"matricule\": \"MAT-ADMIN-001\",\n  \"password\": \"Pass1234!\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/auth/login/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "auth",
+            "login",
+            ""
+          ]
+        }
+      }
+    },
+    {
+      "name": "Auth - Me",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{auth_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/auth/me/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "auth",
+            "me",
+            ""
+          ]
+        }
+      }
+    },
+    {
+      "name": "Auth - Logout",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Token {{auth_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/auth/logout/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "auth",
+            "logout",
+            ""
+          ]
+        }
+      }
+    },
+    {
+      "name": "Grades - Liste",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/cartes/grades/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "cartes",
+            "grades",
+            ""
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cartes - Creer",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "nom",
+              "value": "KABILA",
+              "type": "text"
+            },
+            {
+              "key": "post_nom",
+              "value": "MULUMBA",
+              "type": "text"
+            },
+            {
+              "key": "prenom",
+              "value": "Isaac",
+              "type": "text"
+            },
+            {
+              "key": "grade",
+              "value": "Cap",
+              "type": "text"
+            },
+            {
+              "key": "matricule",
+              "value": "MAT-001",
+              "type": "text"
+            },
+            {
+              "key": "fonction",
+              "value": "Chef de section",
+              "type": "text"
+            },
+            {
+              "key": "date",
+              "value": "2026-03-04",
+              "type": "text"
+            },
+            {
+              "key": "profil",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/cartes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "cartes",
+            ""
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cartes - Lister",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/cartes/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "cartes",
+            ""
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cartes - Filtrer par grade",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/cartes/?grade=Cap",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "cartes",
+            ""
+          ],
+          "query": [
+            {
+              "key": "grade",
+              "value": "Cap"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cartes - Filtrer par matricule",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/cartes/?matricule=MAT-001",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "cartes",
+            ""
+          ],
+          "query": [
+            {
+              "key": "matricule",
+              "value": "MAT-001"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cartes - Recherche",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/cartes/?search=KABILA",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "cartes",
+            ""
+          ],
+          "query": [
+            {
+              "key": "search",
+              "value": "KABILA"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cartes - Detail",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/cartes/{{carte_id}}/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "cartes",
+            "{{carte_id}}",
+            ""
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cartes - Modifier (PATCH)",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "fonction",
+              "value": "Commandant adjoint",
+              "type": "text"
+            },
+            {
+              "key": "grade",
+              "value": "Maj",
+              "type": "text"
+            },
+            {
+              "key": "profil",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/cartes/{{carte_id}}/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "cartes",
+            "{{carte_id}}",
+            ""
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cartes - Statistiques",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/cartes/stats/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "cartes",
+            "stats",
+            ""
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000/api"
+    },
+    {
+      "key": "carte_id",
+      "value": "1"
+    },
+    {
+      "key": "auth_token",
+      "value": ""
+    }
+  ]
+}
